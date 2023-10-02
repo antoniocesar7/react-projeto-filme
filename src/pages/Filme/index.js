@@ -2,6 +2,8 @@ import { useEffect,useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from '../../services/api';
 import './filme-info.css';
+import { toast } from "react-toastify";
+
 
 
 function Filme(){
@@ -47,13 +49,13 @@ function Filme(){
         const hasFilmes = filmeSalvos.some((filmeSalvo) => filmeSalvo.id === filme.id);//método que verifica se tem pelo menos um item igual dentro do array
 
         if(hasFilmes){
-            alert("ESSE FILME JÁ ESTÁ NA LISTA");
+            toast.warn("Este filme já está na sua lista!!!");
 
             return;
         }
         filmeSalvos.push(filme);
         localStorage.setItem("@primeflix",JSON.stringify(filmeSalvos));
-        alert("FILME SALVO COM SUCESSO!")
+        toast.success("Filme salvo com sucesso!!!");
 
     }
 
